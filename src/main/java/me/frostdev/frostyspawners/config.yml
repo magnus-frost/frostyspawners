@@ -1,0 +1,151 @@
+# Enable debug logging.
+debug: false
+
+# Allow upgrading spawners.
+upgrade-spawners: true
+
+# Allow mining spawners with any Silk Touch-enchanted pickaxe, while retaining spawner mob type and level.
+silk-touch-mine: true
+
+# Warn players when they try to mine a spawner without the Silk Touch enchantment. (requires 'silk-touch-mine' to be set to true).
+silk-touch-protect: true
+
+# Allow the usage of the type menu in the Spawner Menu.
+type-menu: true
+
+# Enable the effect that plays when a spawner is upgraded to the maximum level.
+max-level-effect: true
+
+# Enable the sound effects when using the Spawner Menu.
+menu-sounds: true
+
+# Allow changing spawner types with right-clicking spawners while holding Spawn Eggs.
+right-click-eggs: true
+
+# The amount of eggs required for changing the type of a spawner by right-clicking it with a Spawn Egg.
+eggs-amount: 5
+
+############################################################
+# +------------------------------------------------------+ #
+# |              Spawner Menu Configuration              | #
+# +------------------------------------------------------+ #
+############################################################
+
+# -- Main menu -- #
+
+# The text displayed at the top of the menu.
+main-menu-header: '&9&lAdvanced &f&lSpawner Menu'
+
+# The display name of the items bordering the menu.
+border-item-name: '&9&lAdvanced &f&lSpawners'
+
+# Configure the item for closing the menu
+close-item:
+  name: '&c&lClose'
+  lore: '&6Close the menu.'
+
+# Configure the item for returning to the main menu
+return-item:
+  name: '&c&lReturn'
+  lore: '&6Return to main menu.'
+
+# Configure the spawner info item.
+info-item:
+  name: '&a&lSpawner Info'
+  lore1: '&6Level: &b%level%&6.'
+  lore2: '&6Delay: &b%delay% &6seconds.'
+  lore3: '&6Enabled: &r%value%&6.'
+  lore4: '&6Locked: &r%value%&6.'
+  lore5: '&7Click to open spawner settings menu.'
+
+# Configure the item for upgrading a spawner.
+upgrade-item:
+  material: EXP_BOTTLE
+  name:
+    upgrade: '&a&lUpgrade Spawner to lvl. &6&l%level%'
+    max: '&a&lAt maximum level!'
+  lore1: '&6Cost: &b%cost%&6.'
+  lore2: '&6New delay: &b%delay% seconds&6.'
+  lore3: '&7Click to upgrade.'
+
+# Configure the item for going to the types menu.
+type-menu-item:
+  name: '&6&lType Menu'
+  lore1: '&6Current type: &b%type%&6.'
+  lore2: '&7Click to open types menu.'
+
+# Configure the item for toggling the show delay option.
+delay-item:
+  name: '&6&lShow delay: &r%value%&6&l.'
+  lore1: '&7Click to toggle option.'
+
+# -- Settings menu -- #
+
+# Configure the item for toggling spawner spawning.
+enabled-item:
+  name: '&6&lEnabled: &r%value%&6&l.'
+  lore: '&7Click to toggle option.'
+
+# Configure the item for toggling the lock option.
+lock-item:
+  name: '&6&lLocked: &r%value%&6&l.'
+  lore1: '&7Click to toggle option.'
+
+# -- Type menu -- #
+type-menu-header: '&&9&lSelect &f&la type'
+
+# Configure the item for changing the spawner's type to a certain entity type.
+egg-item:
+  name: '&6&l%type%'
+  lore: '&7Click to change spawner type.'
+
+############################################################
+# +------------------------------------------------------+ #
+# |                 Levels Configuration                 | #
+# +------------------------------------------------------+ #
+############################################################
+
+# The maximum level
+max-level: 5
+
+# Set whether the upgrades should cost EXP levels or money. (requires Vault for money)
+money-upgrades: false
+
+# Configure each level individually
+levels:
+  '0':
+    cost: 0
+    delay: 500
+    spawnCount: 4
+    effectType: none
+    effect: none
+  '1':
+    cost: 50
+    delay: 450
+    spawnCount: 4
+    effectType: particle
+    effect: PORTAL
+  '2':
+    cost: 100
+    delay: 400
+    spawnCount: 4
+    effectType: particle
+    effect: PORTAL
+  '3':
+    cost: 150
+    delay: 300
+    spawnCount: 4
+    effectType: particle
+    effect: PORTAL
+  '4':
+    cost: 200
+    delay: 200
+    spawnCount: 4
+    effectType: particle
+    effect: PORTAL
+  '5':
+    cost: 250
+    delay: 100
+    spawnCount: 4
+    effectType: particle
+    effect: PORTAL

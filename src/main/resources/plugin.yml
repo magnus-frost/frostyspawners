@@ -1,0 +1,129 @@
+main: me.frostdev.frostyspawners.Frostyspawners
+name: frostyspawners
+version: 0.1
+api-version: 1.13
+author: MagnusFrost
+description: Upgradable spawners.
+softdepend: [HolographicDisplays, Vault]
+
+commands:
+  frostyspawners:
+    description: Main command.
+    aliases: [fs]
+
+permissions:
+  frostyspawners.admin:
+    description: Full use of the plugin.
+    default: op
+    children:
+      frostyspawners.command.*: true
+      frostyspawners.menu.*: true
+      frostyspawners.egg: true
+      frostyspawners.egg.type.all: true
+  frostyspawners.moderator:
+    description: Moderator permissions of the plugin.
+    default: false
+    children:
+      frostyspawners.command: true
+      frostyspawners.command.info: true
+      frostyspawners.command.enable: true
+      frostyspawners.menu: true
+      frostyspawners.menu.spawner: true
+      frostyspawners.menu.type: true
+      frostyspawners.egg: true
+
+  frostyspawners.command.*:
+    description: Allows full usage of /frostyspawners.
+    default: false
+    children:
+      frostyspawners.command: true
+      frostyspawners.command.save: true
+      frostyspawners.command.load: true
+      frostyspawners.command.reload: true
+      frostyspawners.command.clean: true
+      frostyspawners.command.clear: true
+      frostyspawners.command.info: true
+      frostyspawners.command.level: true
+      frostyspawners.command.enable: true
+      frostyspawners.command.lock: true
+      frostyspawners.command.showdelay: true
+
+  frostyspawners.menu.*:
+    description: Allows full usage of the spawner menu.
+    default: false
+    children:
+      frostyspawners.menu: true
+      frostyspawners.menu.spawner: true
+      frostyspawners.menu.type: true
+      frostyspawners.menu.upgrade: true
+      frostyspawners.menu.showdelay: true
+      frostyspawners.menu.enabled: true
+      frostyspawners.menu.locked: true
+      frostyspawners.menu.type.all: true
+
+  frostyspawners.command:
+    description: Gives access to main command.
+    default: false
+  frostyspawners.command.save:
+    description: Gives access to saving data.
+    default: false
+  frostyspawners.command.load:
+    description: Gives access to loading data.
+    default: false
+  frostyspawners.command.reload:
+    description: Gives access to reloading the plugin.
+    default: false
+  frostyspawners.command.clean:
+    description: Gives access to cleaning up the save file.
+    default: false
+  frostyspawners.command.clear:
+    description: Gives access to clearing the save file.
+    default: false
+  frostyspawners.command.info:
+    description: Gives access to seeing information about a spawner.
+    default: false
+  frostyspawners.command.level:
+    description: Gives access to setting the level of a spawner.
+    default: false
+  frostyspawners.command.enable:
+    description: Gives access to enabling or disabling a spawner.
+    default: false
+  frostyspawners.command.lock:
+    description: Gives access to locking a spawner to be only used by it's owner.
+    default: false
+  frostyspawners.command.showdelay:
+    description: Gives access to enabling or disabling delay showing for a spawner.
+    default: false
+  frostyspawners.command.type:
+    description: Gives access to changing the type of a spawner.
+    default: false
+  frostyspawners.menu:
+    description: Gives access to the spawner menu.
+    default: true
+  frostyspawners.menu.upgrade:
+    description: Gives access to upgrading a spawner through the menu.
+    default: true
+  frostyspawners.menu.showdelay:
+    description: Gives access to toggling the showdelay option in the menu.
+    default: true
+  frostyspawners.menu.spawner:
+    description: Gives access to the spawner settings menu for spawners.
+    default: true
+  frostyspawners.menu.enabled:
+    description: Gives access to enabling or disabling a spawner in the spawner settings menu.
+    default: true
+  frostyspawners.menu.locked:
+    description: Gives access to locking or unlocking a spawner in the spawner settings menu.
+    default: true
+  frostyspawners.menu.type:
+    description: Gives access to the types menu for spawners.
+    default: false
+  frostyspawners.menu.type.all:
+    description: Gives access to all types in the types meny for spawners.
+    default: false
+  frostyspawners.egg:
+    description: Gives acces to changing a spawner's type with spawner eggs.
+    default: false
+  frostyspawners.egg.type.all:
+    description: Gives acces to changing a spawner's type to anything with spawner eggs.
+    default: false
