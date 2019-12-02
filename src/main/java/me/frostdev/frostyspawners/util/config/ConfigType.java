@@ -16,6 +16,10 @@ public class ConfigType {
         type = t.toString().toLowerCase();
         return !Frostyspawners.PLUGIN.getConfig().isSet("types." + type + ".levelreq") ? 0 : Frostyspawners.PLUGIN.getConfig().getInt("types." + type + ".levelreq");
     }
+    public boolean getenabled(EntityType t) {
+        type = t.toString().toLowerCase();
+        return Frostyspawners.PLUGIN.getConfig().isSet("types." + type + ".enabled") || Frostyspawners.PLUGIN.getConfig().getBoolean("types." + type + ".enabled");
+    }
     public String gettype(EntityType t) {
         type = t.toString().toLowerCase();
         return type;

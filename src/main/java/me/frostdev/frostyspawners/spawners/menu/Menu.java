@@ -18,8 +18,11 @@ import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -195,19 +198,34 @@ public class Menu {
     }
 
     private void type_menu_item(Inventory menu, Spawner spawner) {
-        ItemStack item = this.main.items.spawn_egg(spawner.getSpawnedType()).toItemStack();
-        ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName(Config.menuTypeMenuItemName.color());
-        List<String> lore = new ArrayList();
-        lore.add(ChatColor.translateAlternateColorCodes('&', Config.menuTypeMenuItemLore1.get().replace("%type%", spawner.getSpawnedEntity())));
-        if (Config.typeMenu.get()) {
-            lore.add(Config.menuTypeMenuItemLore2.color());
-        }
+        if (spawner.getSpawnedType().equals(EntityType.IRON_GOLEM)) {
+            ItemStack item = new ItemStack(Material.IRON_HELMET);
+            ItemMeta meta = item.getItemMeta();
+            meta.removeAttributeModifier(Attribute.GENERIC_ARMOR);
+            meta.setDisplayName("Advanced Entity: Iron Golem");
+            List<String> lore = new ArrayList();
+            lore.add("Iron Golem Spawner");
+            meta.setLore(lore);
+            item.setItemMeta(meta);
+            menu.setItem(20, item);
+        } else {
+            ItemStack item = this.main.items.spawn_egg(spawner.getSpawnedType()).toItemStack();
+            ItemMeta meta = item.getItemMeta();
+            meta.setDisplayName(Config.menuTypeMenuItemName.color());
+            List<String> lore = new ArrayList();
+            lore.add(ChatColor.translateAlternateColorCodes('&', Config.menuTypeMenuItemLore1.get().replace("%type%", spawner.getSpawnedEntity())));
+            if (Config.typeMenu.get()) {
+                lore.add(Config.menuTypeMenuItemLore2.color());
+            }
 
-        meta.setLore(lore);
-        item.setItemMeta(meta);
-        menu.setItem(20, item);
+            meta.setLore(lore);
+            item.setItemMeta(meta);
+            menu.setItem(20, item);
+        }
     }
+   // private  void type_menu_item_advanced(Inventory menu, Spawner spawner){
+   //     ItemStack item = t
+   // }
 
     private void show_delay_item(Inventory menu, Spawner spawner) {
         ItemStack item = this.main.items.wool(1, DyeColor.WHITE);
@@ -362,19 +380,44 @@ public class Menu {
     }
 
     private void egg_item(Inventory menu, int location, TypeMenuEggItem egg) {
-        EntityType etype = egg.getEntityType();
-        ConfigType name = new ConfigType();
-        Double cost = name.getTypeCost(etype);
-        Integer lvlreq = name.getLevelReq(etype);
-        ItemStack item = new ItemStack(egg.getMaterial(), 1);
-        ItemMeta meta = item.getItemMeta();
-        List<String> lore = new ArrayList();
-        meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', Config.menuTypeEggItemName.get().replaceAll("%type%", egg.getDisplayName())));
-        lore.add(ChatColor.translateAlternateColorCodes('&', Config.menuTypeEggItemLore.get()));
-        lore.add(ChatColor.translateAlternateColorCodes('&', Config.menuTypeEggItemLore1.get().replace("%cost%", cost.toString())));
-        lore.add(ChatColor.translateAlternateColorCodes('&', Config.lvlreq.get().replaceAll("%lvlreq%", lvlreq.toString())));
-        meta.setLore(lore);
-        item.setItemMeta(meta);
-        menu.setItem(location, item);
+        if (egg.getEntityType().equals(EntityType.IRON_GOLEM)){
+            EntityType etype = egg.getEntityType();
+            ConfigType name = new ConfigType();
+            Double cost = name.getTypeCost(etype);
+            int lvlreq = name.getLevelReq(etype);
+            ItemStack golem = main.items.helmet(1);
+            ItemMeta mgolem = golem.getItemMeta();
+            Material igolem = golem.getType();
+            golem.setType(igolem);
+            mgolem.removeAttributeModifier(EquipmentSlot.HEAD);
+            mgolem.removeAttributeModifier(Attribute.GENERIC_ARMOR);
+            mgolem.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, true);
+            List<String> lore = new ArrayList();
+            mgolem.setDisplayName(ChatColor.translateAlternateColorCodes('&', Config.menuTypeEggItemName.get().replaceAll("%type%", egg.getDisplayName())));
+            lore.add(ChatColor.translateAlternateColorCodes('&', Config.menuTypeEggItemLore.get()));
+            lore.add(ChatColor.translateAlternateColorCodes('&', Config.menuTypeEggItemLore1.get().replace("%cost%", cost.toString())));
+            lore.add(ChatColor.translateAlternateColorCodes('&', Config.lvlreq.get().replaceAll("%lvlreq%", Integer.toString(lvlreq))));
+            mgolem.setLore(lore);
+            golem.setItemMeta(mgolem);
+            golem.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+            golem.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+            golem.addItemFlags(ItemFlag.HIDE_PLACED_ON);
+            menu.setItem(location, golem);
+        }else {
+            EntityType etype = egg.getEntityType();
+            ConfigType name = new ConfigType();
+            Double cost = name.getTypeCost(etype);
+            int lvlreq = name.getLevelReq(etype);
+            ItemStack item = new ItemStack(egg.getMaterial(), 1);
+            ItemMeta meta = item.getItemMeta();
+            List<String> lore = new ArrayList();
+            meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', Config.menuTypeEggItemName.get().replaceAll("%type%", egg.getDisplayName())));
+            lore.add(ChatColor.translateAlternateColorCodes('&', Config.menuTypeEggItemLore.get()));
+            lore.add(ChatColor.translateAlternateColorCodes('&', Config.menuTypeEggItemLore1.get().replace("%cost%", cost.toString())));
+            lore.add(ChatColor.translateAlternateColorCodes('&', Config.lvlreq.get().replaceAll("%lvlreq%", Integer.toString(lvlreq))));
+            meta.setLore(lore);
+            item.setItemMeta(meta);
+            menu.setItem(location, item);
+        }
     }
 }

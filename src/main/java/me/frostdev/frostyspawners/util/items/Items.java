@@ -26,4 +26,6 @@ public interface Items {
     SpawnEgg spawn_egg(EntityType var1);
 
     ItemStack bedrock(int var1);
+
+    ItemStack helmet(int var1);
 }

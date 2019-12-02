@@ -17,6 +17,7 @@ public class TypeMenuEggItem {
     private Permission permission;
     private double cost;
     private Double lvlreq;
+    private Boolean isenabled;
 
     public TypeMenuEggItem(EntityType t, Material m, String n) {
         this.main = Frostyspawners.INSTANCE;
@@ -27,7 +28,10 @@ public class TypeMenuEggItem {
         this.egg = this.main.items.spawn_egg(this.type);
         this.cost = !Frostyspawners.PLUGIN.getConfig().isSet("types." + type + ".cost") ? 0.0D : Frostyspawners.PLUGIN.getConfig().getDouble("types." + type + ".cost");
         this.lvlreq = !Frostyspawners.PLUGIN.getConfig().isSet("types." + type + ".levelreq") ? 0.0D : Frostyspawners.PLUGIN.getConfig().getInt("types." + type + ".levelreq");
+        this.isenabled = !Frostyspawners.PLUGIN.getConfig().isBoolean("types." + type + ".enabled") ? true : Frostyspawners.PLUGIN.getConfig().getBoolean("types." + type + ".enabled");
     }
+
+
 
     public EntityType getEntityType() {
         return this.type;
@@ -51,6 +55,7 @@ public class TypeMenuEggItem {
     public Double getCost() {
         return this.cost;
     }
+    public Boolean getIsenabled() {return this.isenabled;}
     public Integer getlvlreq () {
         return this.lvlreq.intValue();
     }

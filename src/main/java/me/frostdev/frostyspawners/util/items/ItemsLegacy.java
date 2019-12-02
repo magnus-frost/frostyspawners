@@ -33,6 +33,7 @@ public class ItemsLegacy implements Items {
     public ItemStack bedrock(int i) {
         return new ItemStack(Material.matchMaterial("BEDROCK"), i);
     }
+    public ItemStack helmet(int i) {return new ItemStack(Material.IRON_HELMET);}
 
     public ItemStack wood_pickaxe(int i) {
         return new ItemStack(Material.matchMaterial("WOOD_PICKAXE"), i);

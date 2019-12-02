@@ -62,8 +62,8 @@ public class Config {
         menuSounds = new ConfigBoolean("menu-sounds", true);
         eggsEnable = new ConfigBoolean("right-click-egg", false);
         eggsAmount = new ConfigInteger("eggs-amount", 5);
-        menuHeader = new ConfigString("main-menu-header", "&9&lAdvanced &f&lSpawner Menu");
-        menuBorderItemName = new ConfigString("border-item-name", "&9&lAdvanced &f&lSpawners");
+        menuHeader = new ConfigString("main-menu-header", "&9&Frosty &f&lSpawner Menu");
+        menuBorderItemName = new ConfigString("border-item-name", "&9&Frosty &f&lSpawners");
         menuCloseItemName = new ConfigString("close-item.name", "&c&lClose");
         menuCloseItemLore = new ConfigString("close-item.lore", "&6Close the menu.");
         menuReturnItemName = new ConfigString("return-item.name", "&c&lReturn");

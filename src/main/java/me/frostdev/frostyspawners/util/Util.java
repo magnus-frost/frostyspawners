@@ -6,14 +6,24 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeSet;
+
+import me.frostdev.frostyspawners.Frostyspawners;
 import me.frostdev.frostyspawners.spawners.Spawner;
+import me.frostdev.frostyspawners.util.config.Config;
+import me.frostdev.frostyspawners.util.config.ConfigBoolean;
+import me.frostdev.frostyspawners.util.config.ConfigType;
 import me.frostdev.frostyspawners.util.items.TypeMenuEggItem;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.IronGolem;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.permissions.Permission;
 
 public class Util {
@@ -30,6 +40,11 @@ public class Util {
         SERVER_VERSION = name;
     }
 
+    private boolean isenabled(EntityType type){
+        ConfigType yn = new ConfigType();
+        return yn.getenabled(type);
+    }
+
     public Util() {
         mobTypes = new LinkedHashMap();
         simpleMobTypes = new LinkedHashMap();
@@ -44,11 +59,9 @@ public class Util {
                 types.add(type.name());
             }
         }
+        types.add("IRON_GOLEM");
 
-        Iterator var11 = types.iterator();
-
-        while(var11.hasNext()) {
-            String name = (String)var11.next();
+        for (String name : types) {
             EntityType type = EntityType.valueOf(name);
             mobTypes.put(name, type);
             simpleMobTypes.put(name.replace("_", ""), type);
@@ -56,7 +69,7 @@ public class Util {
             String[] s1 = type.name().split("_");
             String uname = "";
 
-            for(int i = 0; i < s1.length; ++i) {
+            for (int i = 0; i < s1.length; ++i) {
                 String s = s1[i];
                 String word = s.substring(0, 1).toUpperCase() + s.toLowerCase().substring(1);
                 if (i == s1.length - 1) {
@@ -81,10 +94,16 @@ public class Util {
     }
 
     public static Material getEggMaterial(EntityType type) {
+        if(type.equals(EntityType.IRON_GOLEM)){
+            return Material.IRON_HELMET;
+        }else
         return ((TypeMenuEggItem)eggs.get(type)).getMaterial();
     }
 
     public static String getEggName(EntityType type) {
+        if(type.equals(EntityType.IRON_GOLEM)){
+            return (String) "Iron Golem";
+        }
         return ((TypeMenuEggItem)eggs.get(type)).getDisplayName();
     }
 
@@ -97,10 +116,16 @@ public class Util {
     }
 
     public static String toUserFriendlyString(EntityType type) {
+        if(type.equals(EntityType.IRON_GOLEM)){
+            return (String)"IRON_GOLEM";
+        }
         return (String)userFriendlyMobTypes.get(type);
     }
 
     public static String toString(EntityType type) {
+        if(type.equals(EntityType.IRON_GOLEM)){
+            return (String)"IRON_GOLEM";
+        }
         return (String)userFriendlyMobTypes.get(type);
     }
 
@@ -109,10 +134,16 @@ public class Util {
     }
 
     public static EntityType fromString(String type) {
+        if(type.equals("IRON_GOLEM")){
+            return EntityType.IRON_GOLEM;
+        }
         return (EntityType)simpleMobTypes.get(type.toUpperCase());
     }
 
     public static boolean isSpawnEgg(ItemStack item) {
+        if(item.getType().equals(Material.IRON_HELMET)){
+            return true;
+        }
         return item.getType().name().contains("SPAWN_EGG");
     }
 
@@ -163,12 +194,19 @@ public class Util {
 
         for(int var2 = 0; var2 < var3; ++var2) {
             Material mat = var4[var2];
+            if(mat.name().contains("IRON")){
+                Material igolem = Material.IRON_HELMET;
+                eggs.put(EntityType.IRON_GOLEM, new TypeMenuEggItem(EntityType.IRON_GOLEM, igolem, "Iron Golem"));
+            }
             if (mat.name().contains("SPAWN_EGG")) {
                 String typeName = mat.name().replace("_SPAWN_EGG", "");
                 if (typeName.equals("MOOSHROOM")) {
                     typeName = "MUSHROOM_COW";
                 } else if (typeName.equals("ZOMBIE_PIGMAN")) {
                     typeName = "PIG_ZOMBIE";
+                } else if(typeName.equals("IRON_GOLEM")) {
+                    typeName = "IRON_GOLEM";
+                    mat = Material.IRON_HELMET;
                 }
 
                 EntityType type = EntityType.valueOf(typeName);

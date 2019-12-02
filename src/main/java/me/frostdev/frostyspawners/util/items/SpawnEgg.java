@@ -17,4 +17,5 @@ public interface SpawnEgg {
     ItemStack toItemStack();
 
     ItemStack toItemStack(int var1);
+
 }

@@ -266,7 +266,6 @@ public class MenuHandler implements Listener {
                         ItemStack toin = this.spawner.toItemStack();
                         p.getInventory().addItem(toin);
                         p.updateInventory();
-                        p.sendMessage("Correct Route?");
                         Bukkit.getServer().getPluginManager().callEvent(breakEvent);
                         this.spawner.getBlock().setType(Material.AIR);
                         this.exit();
@@ -300,7 +299,7 @@ public class MenuHandler implements Listener {
                         }
                     }
 
-                    if (Util.isSpawnEgg(option)) {
+                    if (Util.isSpawnEgg(option) || option.equals(new ItemStack(Material.IRON_HELMET))) {
                         if (!Config.typeMenu.get()) {
                             p.sendMessage(this.prefix + Lang.SPAWNER_CHANGE_EGG_DISABLED.toString());
                             this.exit();
@@ -390,6 +389,13 @@ public class MenuHandler implements Listener {
                             this.exit();
                             return;
                         }
+
+                        if(this.spawner.getSpawnedType().equals(type)){
+                            p.sendMessage("That seems pretty redundant...");
+                            this.exit();
+                            return;
+                        }
+
                         ConfigType level = new ConfigType();
                         int levelreq = level.getLevelReq(type);
                         if (spawner.getLevel() < levelreq){
@@ -418,8 +424,8 @@ public class MenuHandler implements Listener {
                             this.spawner.setSpawnedType(type);
                             String debug;
                             debug = type.toString().toLowerCase();
-                            p.sendMessage("FROSTY DEBUGGER: TYPE: " + debug + " COST: " + name.getTypeCost(type).toString() + " LEVEL REQUIREMENT: " + levelreq);
-                            p.sendMessage("CURRENT SPAWNER: TYPE: " + this.spawner.getSpawnedType().toString() + " LEVEL: " + this.spawner.getLevel() + " ENABLED: " + this.spawner.isEnabled() + " LOCKED: " + this.spawner.isLocked());
+                          //  p.sendMessage("FROSTY DEBUGGER: TYPE: " + debug + " COST: " + name.getTypeCost(type).toString() + " LEVEL REQUIREMENT: " + levelreq);
+                          //  p.sendMessage("CURRENT SPAWNER: TYPE: " + this.spawner.getSpawnedType().toString() + " LEVEL: " + this.spawner.getLevel() + " ENABLED: " + this.spawner.isEnabled() + " LOCKED: " + this.spawner.isLocked());
                         } catch (IllegalArgumentException var10) {
                             p.sendMessage(this.prefix + Lang.SPAWNER_CHANGE_TYPE_FAIL.toString());
                             Logger.debug("Failed to change spawned type of spawner '" + this.spawner.getID() + "'. Reason: unknown or unregistered entity type.", var10);

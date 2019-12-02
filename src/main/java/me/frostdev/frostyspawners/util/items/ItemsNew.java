@@ -43,6 +43,9 @@ public class ItemsNew implements Items {
     public ItemStack bedrock(int i) {
         return new ItemStack(Material.matchMaterial("BEDROCK"), i);
     }
+    public ItemStack helmet(int i) {
+        return new ItemStack(Material.IRON_HELMET);
+    }
 
     public ItemStack wool(int i, DyeColor c) {
         return new ItemStack(Material.matchMaterial(c.name() + "_WOOL"), i);
