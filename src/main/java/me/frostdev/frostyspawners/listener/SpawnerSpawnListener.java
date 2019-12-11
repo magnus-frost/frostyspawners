@@ -54,12 +54,17 @@ public class SpawnerSpawnListener implements Listener {
         e.getEntity().setMetadata("frosty_ident", new FixedMetadataValue(this.main, true));
         List<Entity> near = location.getWorld().getEntities();
 
+
         for(Entity x : near) {
             if (x.getType().equals(type)) {
                 if (e.getLocation().distance(location) <= radius) {
                       if(x.isCustomNameVisible() && x.fromMobSpawner() && x.getMetadata("frosty_identUUID").get(0).asString().equals(player.getUniqueId().toString()) && x.getMetadata("frosty_spawnerloc").get(0).asString().equals(location.toString())){
                           if(x.getUniqueId() != e.getEntity().getUniqueId()) {
                               if (x.getCustomName() != null && x.getCustomName().contains("The Omega x")) {
+                                  if(x.getMetadata("frosty_count").get(0).asInt() >= 64){
+                                      e.getEntity().remove();
+                                      return;
+                                  }
                                   e.getEntity().remove();
                                   count++;
                                   mcheck++;

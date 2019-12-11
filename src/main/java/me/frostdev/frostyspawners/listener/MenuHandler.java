@@ -30,7 +30,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.*;
+import org.bukkit.event.inventory.ClickType;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
@@ -134,12 +136,13 @@ public class MenuHandler implements Listener {
     )
     public void onMenuClick(InventoryClickEvent e) {
         if (!(e.getClickedInventory() instanceof PlayerInventory) && e.getClickedInventory() != null && e.getClickedInventory().getHolder() != null && (e.getClickedInventory().getHolder() instanceof MainMenuHolder || e.getClickedInventory().getHolder() instanceof SettingsMenuHolder || e.getClickedInventory().getHolder() instanceof TypeMenuHolder) && e.getCurrentItem() != null && e.getCurrentItem().getType() != Material.AIR && e.getWhoClicked().getUniqueId() == this.player.getUniqueId()) {
-        //    int debugrange = this.spawner.getCreatureSpawner().getSpawnRange();
-        //    int debugspawncount = this.spawner.getCreatureSpawner().getSpawnCount();
-        //    int debugdelay = this.spawner.getDelay();
-        //    player.sendMessage(String.valueOf(debugrange));
-        //    player.sendMessage(String.valueOf(debugspawncount));
-        //    player.sendMessage(String.valueOf(debugdelay));
+            int debugrange = this.spawner.getCreatureSpawner().getSpawnRange();
+            int debugspawncount = this.spawner.getCreatureSpawner().getSpawnCount();
+            int debugdelay = this.spawner.getDelay();
+            player.sendMessage(String.valueOf(debugrange));
+            player.sendMessage(String.valueOf(debugspawncount));
+            player.sendMessage(String.valueOf(debugdelay));
+
             if (e.getClick() != ClickType.LEFT && e.getClick() != ClickType.RIGHT) {
                 e.setCancelled(true);
             } else {
@@ -255,9 +258,6 @@ public class MenuHandler implements Listener {
                         SoundHandler.OPTION_SELECT.playSound(this.spawner.getLocation(), 0.3F, 0.0F);
                         this.openMenu("SETTINGS");
                         return;
-                    }
-                    if(e.getAction().equals(InventoryAction.PLACE_SOME)){
-                        e.setCancelled(true);
                     }
                     if (option.getType() == this.main.items.bedrock(1).getType()) {
                         SpawnerBreakEvent breakEvent = new SpawnerBreakEvent(this.spawner, this.player);

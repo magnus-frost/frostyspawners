@@ -54,6 +54,8 @@ public class Menu {
     }
 
     public Map<Integer, Inventory> createTypeMenu(Player player) {
+
+
         this.setup_menu_type();
         this.loadEggs(player);
         return this.menu_type;
@@ -64,68 +66,103 @@ public class Menu {
         this.close_item(this.menu_main);
         this.pickup_item(this.menu_main);
         this.border_item(this.menu_main, 0, DyeColor.YELLOW);
+        this.border_item(this.menu_main, 1, DyeColor.YELLOW);
         this.border_item(this.menu_main, 2, DyeColor.YELLOW);
+        this.border_item(this.menu_main, 3, DyeColor.YELLOW);
         this.border_item(this.menu_main, 4, DyeColor.YELLOW);
+        this.border_item(this.menu_main, 5, DyeColor.YELLOW);
         this.border_item(this.menu_main, 6, DyeColor.YELLOW);
+        this.border_item(this.menu_main, 7, DyeColor.YELLOW);
         this.border_item(this.menu_main, 8, DyeColor.YELLOW);
+        this.border_item(this.menu_main, 9, DyeColor.YELLOW);
+        this.border_item(this.menu_main, 10, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_main, 11, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_main, 12, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_main, 13, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_main, 14, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_main, 15, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_main, 16, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_main, 17, DyeColor.YELLOW);
         this.border_item(this.menu_main, 18, DyeColor.YELLOW);
+        this.border_item(this.menu_main, 19, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_main, 20, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_main, 21, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_main, 22, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_main, 23, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_main, 24, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_main, 25, DyeColor.LIGHT_GRAY);
         this.border_item(this.menu_main, 26, DyeColor.YELLOW);
+        this.border_item(this.menu_main, 27, DyeColor.YELLOW);
+        this.border_item(this.menu_main, 28, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_main, 29, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_main, 30, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_main, 32, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_main, 33, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_main, 35, DyeColor.YELLOW);
         this.border_item(this.menu_main, 36, DyeColor.YELLOW);
+        this.border_item(this.menu_main, 37, DyeColor.YELLOW);
         this.border_item(this.menu_main, 38, DyeColor.YELLOW);
+        this.border_item(this.menu_main, 39, DyeColor.YELLOW);
         this.border_item(this.menu_main, 40, DyeColor.YELLOW);
+        this.border_item(this.menu_main, 41, DyeColor.YELLOW);
         this.border_item(this.menu_main, 42, DyeColor.YELLOW);
+        this.border_item(this.menu_main, 43, DyeColor.YELLOW);
         this.border_item(this.menu_main, 44, DyeColor.YELLOW);
-        this.border_item(this.menu_main, 0, DyeColor.YELLOW);
-        this.border_item(this.menu_main, 1, DyeColor.BLACK);
-        this.border_item(this.menu_main, 3, DyeColor.BLACK);
-        this.border_item(this.menu_main, 5, DyeColor.BLACK);
-        this.border_item(this.menu_main, 7, DyeColor.BLACK);
-        this.border_item(this.menu_main, 9, DyeColor.BLACK);
-        this.border_item(this.menu_main, 17, DyeColor.BLACK);
-        this.border_item(this.menu_main, 27, DyeColor.BLACK);
-        this.border_item(this.menu_main, 35, DyeColor.BLACK);
-        this.border_item(this.menu_main, 37, DyeColor.BLACK);
-        this.border_item(this.menu_main, 39, DyeColor.BLACK);
-        this.border_item(this.menu_main, 41, DyeColor.BLACK);
-        this.border_item(this.menu_main, 43, DyeColor.BLACK);
+
     }
 
     private void setup_menu_settings() {
         this.menu_settings = Bukkit.createInventory(new SettingsMenuHolder(), 45, Config.menuHeader.color());
         this.return_item(this.menu_settings, 22);
-        this.border_item(this.menu_settings, 0, DyeColor.LIGHT_BLUE);
-        this.border_item(this.menu_settings, 2, DyeColor.LIGHT_BLUE);
-        this.border_item(this.menu_settings, 4, DyeColor.LIGHT_BLUE);
-        this.border_item(this.menu_settings, 6, DyeColor.LIGHT_BLUE);
-        this.border_item(this.menu_settings, 8, DyeColor.LIGHT_BLUE);
-        this.border_item(this.menu_settings, 18, DyeColor.LIGHT_BLUE);
-        this.border_item(this.menu_settings, 26, DyeColor.LIGHT_BLUE);
-        this.border_item(this.menu_settings, 36, DyeColor.LIGHT_BLUE);
-        this.border_item(this.menu_settings, 38, DyeColor.LIGHT_BLUE);
-        this.border_item(this.menu_settings, 40, DyeColor.LIGHT_BLUE);
-        this.border_item(this.menu_settings, 42, DyeColor.LIGHT_BLUE);
-        this.border_item(this.menu_settings, 44, DyeColor.LIGHT_BLUE);
-        this.border_item(this.menu_settings, 0, DyeColor.LIGHT_BLUE);
-        this.border_item(this.menu_settings, 1, DyeColor.WHITE);
-        this.border_item(this.menu_settings, 3, DyeColor.WHITE);
-        this.border_item(this.menu_settings, 5, DyeColor.WHITE);
-        this.border_item(this.menu_settings, 7, DyeColor.WHITE);
-        this.border_item(this.menu_settings, 9, DyeColor.WHITE);
-        this.border_item(this.menu_settings, 17, DyeColor.WHITE);
-        this.border_item(this.menu_settings, 27, DyeColor.WHITE);
-        this.border_item(this.menu_settings, 35, DyeColor.WHITE);
-        this.border_item(this.menu_settings, 37, DyeColor.WHITE);
-        this.border_item(this.menu_settings, 39, DyeColor.WHITE);
-        this.border_item(this.menu_settings, 41, DyeColor.WHITE);
-        this.border_item(this.menu_settings, 43, DyeColor.WHITE);
+        this.border_item(this.menu_settings, 0, DyeColor.YELLOW);
+        this.border_item(this.menu_settings, 1, DyeColor.YELLOW);
+        this.border_item(this.menu_settings, 2, DyeColor.YELLOW);
+        this.border_item(this.menu_settings, 3, DyeColor.YELLOW);
+        this.border_item(this.menu_settings, 4, DyeColor.YELLOW);
+        this.border_item(this.menu_settings, 5, DyeColor.YELLOW);
+        this.border_item(this.menu_settings, 6, DyeColor.YELLOW);
+        this.border_item(this.menu_settings, 7, DyeColor.YELLOW);
+        this.border_item(this.menu_settings, 8, DyeColor.YELLOW);
+        this.border_item(this.menu_settings, 9, DyeColor.YELLOW);
+        this.border_item(this.menu_settings, 10, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_settings, 11, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_settings, 12, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_settings, 13, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_settings, 14, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_settings, 15, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_settings, 16, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_settings, 17, DyeColor.YELLOW);
+        this.border_item(this.menu_settings, 18, DyeColor.YELLOW);
+        this.border_item(this.menu_settings, 19, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_settings, 20, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_settings, 21, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_settings, 23, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_settings, 24, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_settings, 25, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_settings, 26, DyeColor.YELLOW);
+        this.border_item(this.menu_settings, 27, DyeColor.YELLOW);
+        this.border_item(this.menu_settings, 28, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_settings, 29, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_settings, 30, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_settings, 31, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_settings, 32, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_settings, 33, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_settings, 34, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_settings, 35, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_settings, 36, DyeColor.YELLOW);
+        this.border_item(this.menu_settings, 37, DyeColor.YELLOW);
+        this.border_item(this.menu_settings, 38, DyeColor.YELLOW);
+        this.border_item(this.menu_settings, 39, DyeColor.YELLOW);
+        this.border_item(this.menu_settings, 40, DyeColor.YELLOW);
+        this.border_item(this.menu_settings, 41, DyeColor.YELLOW);
+        this.border_item(this.menu_settings, 42, DyeColor.YELLOW);
+        this.border_item(this.menu_settings, 43, DyeColor.YELLOW);
+        this.border_item(this.menu_settings, 44, DyeColor.YELLOW);
+
     }
 
     private void setup_menu_type() {
         this.menu_type = new HashMap();
-    }
-
-    private void filler_menu_item() {
-
     }
 
     private void next_page_item(Inventory menu) {
@@ -142,6 +179,13 @@ public class Menu {
         meta.setDisplayName(Config.menuTypePreviousPageItemName.color());
         item.setItemMeta(meta);
         menu.setItem(48, item);
+    }
+    private void blocker_item (Inventory menu, int i){
+        ItemStack item = this.main.items.stained_glass_pane(1, DyeColor.LIGHT_GRAY);
+        ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName(" ");
+        item.setItemMeta(meta);
+        menu.setItem(i, item);
     }
 
     private void spawner_info_item(Inventory menu, Spawner spawner) {
@@ -332,6 +376,7 @@ public class Menu {
         while(true) {
             TypeMenuEggItem eggItem;
             Inventory menu;
+
             do {
                 if (!var5.hasNext()) {
                     var5 = this.menu_type.entrySet().iterator();
@@ -341,14 +386,42 @@ public class Menu {
                         int page = (Integer)entry.getKey();
                         menu = (Inventory)entry.getValue();
                         this.return_item(menu, 49);
+                        for (int i = menu.firstEmpty(); i < menu.getSize(); i++) {
+                            if(menu.getItem(i) == null) {
+                                this.blocker_item(menu, i);
+                            }
+                        }
                         if (page == 1) {
                             this.next_page_item(menu);
+                            this.blocker_item(menu, 53);
+                            this.blocker_item(menu, 52);
+                            this.blocker_item(menu, 51);
+                            this.blocker_item(menu, 48);
+                            this.blocker_item(menu, 47);
+                            this.blocker_item(menu, 46);
+                            this.blocker_item(menu, 45);
                         } else if (page == this.menu_type.size()) {
                             this.previous_page_item(menu);
+                            this.blocker_item(menu, 53);
+                            this.blocker_item(menu, 52);
+                            this.blocker_item(menu, 51);
+                            this.blocker_item(menu, 50);
+                            this.blocker_item(menu, 47);
+                            this.blocker_item(menu, 46);
+                            this.blocker_item(menu, 45);
                         } else {
                             this.next_page_item(menu);
                             this.previous_page_item(menu);
+                            this.previous_page_item(menu);
+                            this.blocker_item(menu, 53);
+                            this.blocker_item(menu, 52);
+                            this.blocker_item(menu, 51);
+                            this.blocker_item(menu, 47);
+                            this.blocker_item(menu, 46);
+                            this.blocker_item(menu, 45);
                         }
+
+
                     }
 
                     return;
@@ -362,6 +435,7 @@ public class Menu {
             if (menu == null) {
                 menu = Bukkit.createInventory(new TypeMenuHolder(), 54, Config.typeHeader.color());
                 this.menu_type.put(currentPage, menu);
+
             }
 
             if (currentSlot > 44) {
@@ -370,6 +444,9 @@ public class Menu {
                 Inventory newMenu = Bukkit.createInventory(new TypeMenuHolder(), 54, Config.typeHeader.color());
                 this.menu_type.put(currentPage, newMenu);
             }
+
+
+
 
             try {
                 this.egg_item((Inventory)this.menu_type.get(currentPage), currentSlot, eggItem);

@@ -12,7 +12,10 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.permissions.Permission;
 
 import java.text.Collator;
-import java.util.*;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.TreeSet;
 
 public class Util {
     private static Map<String, EntityType> mobTypes;
@@ -207,8 +210,4 @@ public class Util {
 
     public static void inspectSpawner(Player player, Spawner spawner) {
     }
-    public static boolean IsGUI(UUID u){
-
-    }
-    public static UUID UUIDlist
 }
