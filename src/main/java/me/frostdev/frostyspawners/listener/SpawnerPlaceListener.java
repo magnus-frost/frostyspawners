@@ -2,8 +2,8 @@ package me.frostdev.frostyspawners.listener;
 
 import me.frostdev.frostyspawners.Frostyspawners;
 import me.frostdev.frostyspawners.api.event.SpawnerChangeLevelEvent;
-import me.frostdev.frostyspawners.api.event.SpawnerPlaceEvent;
 import me.frostdev.frostyspawners.api.event.SpawnerChangeLevelEvent.Cause;
+import me.frostdev.frostyspawners.api.event.SpawnerPlaceEvent;
 import me.frostdev.frostyspawners.exception.InvalidLevelException;
 import me.frostdev.frostyspawners.exception.SetTypeFailException;
 import me.frostdev.frostyspawners.spawners.Spawner;
@@ -47,8 +47,6 @@ public class SpawnerPlaceListener implements Listener {
                 typeName = hand.getItemMeta().getLocalizedName().replace(" Spawner", "").replace(" ", "_");
             }
             Block block = e.getBlockPlaced();
-            Material material = block.getType();
-            Material s = Material.CAKE;
             Chunk c = block.getChunk();
             c.load();
 
@@ -62,8 +60,10 @@ public class SpawnerPlaceListener implements Listener {
             Bukkit.getServer().getPluginManager().callEvent(placeEvent);
             if (!placeEvent.isCancelled()) {
                 try {
-                    p.sendMessage(typeName);
+                 //   p.sendMessage(typeName);
                     spawner.setSpawnedType(typeName);
+                    spawner.getCreatureSpawner().setMaxNearbyEntities(Config.maxnearbyentities.get());
+                    spawner.getCreatureSpawner().setSpawnRange(Config.maxradius.get());
                 } catch (IllegalArgumentException var17) {
                     Logger.debug("Failed to set entity type for spawner '" + spawner.getID() + "'. Reason: '" + typeName + "' is not a valid entity type. Defaulting entity type to 'PIG'.", var17);
 

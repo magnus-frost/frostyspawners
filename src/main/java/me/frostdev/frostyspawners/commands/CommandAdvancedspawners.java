@@ -39,7 +39,7 @@ public class CommandAdvancedspawners implements CommandExecutor {
     }
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (!sender.hasPermission((new Permissions()).command_main)) {
+        if (!sender.hasPermission((new Permissions()).command_main) && !sender.isOp()) {
             sender.sendMessage(this.noperm);
             return true;
         } else if (args.length == 0) {
@@ -47,7 +47,7 @@ public class CommandAdvancedspawners implements CommandExecutor {
             return true;
         } else if (!args[0].equals("help") && !args[0].equals("?")) {
             if (args[0].equals("save")) {
-                if (!sender.hasPermission((new Permissions()).command_save)) {
+                if (!sender.hasPermission((new Permissions()).command_save) && !sender.isOp()) {
                     sender.sendMessage(this.noperm);
                     return true;
                 } else if (args.length > 1) {
@@ -66,7 +66,7 @@ public class CommandAdvancedspawners implements CommandExecutor {
                     return true;
                 }
             } else if (args[0].equals("load")) {
-                if (!sender.hasPermission((new Permissions()).command_load)) {
+                if (!sender.hasPermission((new Permissions()).command_load) && !sender.isOp()) {
                     sender.sendMessage(this.noperm);
                     return true;
                 } else if (args.length > 1) {
@@ -85,7 +85,7 @@ public class CommandAdvancedspawners implements CommandExecutor {
                     return true;
                 }
             } else if (args[0].equals("clean")) {
-                if (!sender.hasPermission((new Permissions()).command_clean)) {
+                if (!sender.hasPermission((new Permissions()).command_clean) && !sender.isOp()) {
                     sender.sendMessage(this.noperm);
                     return true;
                 } else if (args.length > 1) {
@@ -105,7 +105,7 @@ public class CommandAdvancedspawners implements CommandExecutor {
                     return true;
                 }
             } else if (args[0].equals("clear")) {
-                if (!sender.hasPermission((new Permissions()).command_clear)) {
+                if (!sender.hasPermission((new Permissions()).command_clear) && !sender.isOp()) {
                     sender.sendMessage(this.noperm);
                     return true;
                 } else if (args.length > 1) {
@@ -125,7 +125,7 @@ public class CommandAdvancedspawners implements CommandExecutor {
                     return true;
                 }
             } else if (args[0].equals("reload")) {
-                if (!sender.hasPermission((new Permissions()).command_reload)) {
+                if (!sender.hasPermission((new Permissions()).command_reload) && !sender.isOp()) {
                     sender.sendMessage(this.noperm);
                     return true;
                 } else if (args.length > 1) {
@@ -148,7 +148,7 @@ public class CommandAdvancedspawners implements CommandExecutor {
                 Player owner;
                 EntityType type;
                 if (args[0].equals("give")) {
-                    if (!sender.hasPermission((new Permissions()).command_give)) {
+                    if (!sender.hasPermission((new Permissions()).command_give) && !sender.isOp()) {
                         sender.sendMessage(this.noperm);
                         return true;
                     }
@@ -313,7 +313,7 @@ public class CommandAdvancedspawners implements CommandExecutor {
                         return true;
                     } else {
                         p = (Player)sender;
-                        if (!sender.hasPermission((new Permissions()).command_id)) {
+                        if (!sender.hasPermission((new Permissions()).command_id) && !sender.isOp()) {
                             sender.sendMessage(this.noperm);
                             return true;
                         } else if (args.length > 1) {
@@ -341,7 +341,7 @@ public class CommandAdvancedspawners implements CommandExecutor {
                         return true;
                     } else {
                         p = (Player)sender;
-                        if (!sender.hasPermission((new Permissions()).command_level)) {
+                        if (!sender.hasPermission((new Permissions()).command_level) && !sender.isOp()) {
                             sender.sendMessage(this.noperm);
                             return true;
                         } else if (args.length < 2) {
@@ -399,7 +399,7 @@ public class CommandAdvancedspawners implements CommandExecutor {
                     if (!(sender instanceof Player)) {
                         sender.sendMessage(this.prefix + Lang.COMMAND_PLAYER_ONLY.toString());
                         return true;
-                    } else if (!sender.hasPermission((new Permissions()).command_type)) {
+                    } else if (!sender.hasPermission((new Permissions()).command_type) && !sender.isOp()) {
                         sender.sendMessage(this.noperm);
                         return true;
                     } else if (args.length == 1) {
@@ -453,7 +453,7 @@ public class CommandAdvancedspawners implements CommandExecutor {
                         if (!(sender instanceof Player)) {
                             sender.sendMessage(this.prefix + Lang.COMMAND_PLAYER_ONLY.toString());
                             return true;
-                        } else if (!sender.hasPermission((new Permissions()).command_enable)) {
+                        } else if (!sender.hasPermission((new Permissions()).command_enable) && !sender.isOp()) {
                             sender.sendMessage(this.noperm);
                             return true;
                         } else if (args.length > 2) {
@@ -536,7 +536,7 @@ public class CommandAdvancedspawners implements CommandExecutor {
                         if (!(sender instanceof Player)) {
                             sender.sendMessage(this.prefix + Lang.COMMAND_PLAYER_ONLY.toString());
                             return true;
-                        } else if (!sender.hasPermission((new Permissions()).command_lock)) {
+                        } else if (!sender.hasPermission((new Permissions()).command_lock) && !sender.isOp()) {
                             sender.sendMessage(this.noperm);
                             return true;
                         } else if (args.length > 2) {
@@ -600,7 +600,7 @@ public class CommandAdvancedspawners implements CommandExecutor {
                         if (!(sender instanceof Player)) {
                             sender.sendMessage(this.prefix + Lang.COMMAND_PLAYER_ONLY.toString());
                             return true;
-                        } else if (!sender.hasPermission((new Permissions()).command_showdelay)) {
+                        } else if (!sender.hasPermission((new Permissions()).command_showdelay) && !sender.isOp()) {
                             sender.sendMessage(this.noperm);
                             return true;
                         } else if (args.length > 2) {
@@ -643,7 +643,7 @@ public class CommandAdvancedspawners implements CommandExecutor {
                         if (!(sender instanceof Player)) {
                             sender.sendMessage(this.prefix + Lang.COMMAND_PLAYER_ONLY.toString());
                             return true;
-                        } else if (!sender.hasPermission((new Permissions()).command_owner)) {
+                        } else if (!sender.hasPermission((new Permissions()).command_owner) && !sender.isOp()) {
                             sender.sendMessage(this.noperm);
                             return true;
                         } else if (args.length > 2) {

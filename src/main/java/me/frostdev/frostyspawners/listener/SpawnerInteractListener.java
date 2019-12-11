@@ -42,7 +42,7 @@ public class SpawnerInteractListener implements Listener {
             ignoreCancelled = true
     )
     public void onSpawnerInteract(PlayerInteractEvent e) {
-        if (e.getAction() == Action.LEFT_CLICK_BLOCK && this.main.hasHolographicDisplays() && e.getClickedBlock().getType() == this.main.items.spawner(1).getType() && e.getPlayer().hasPermission((new Permissions()).spawner_inspect) && e.getPlayer().getInventory().getItemInMainHand().getType() == Material.AIR) {
+        if (e.getAction() == Action.LEFT_CLICK_BLOCK && this.main.hasHolographicDisplays() && e.getClickedBlock().getType() == this.main.items.spawner(1).getType() && e.getPlayer().hasPermission((new Permissions()).spawner_inspect) && e.getPlayer().getInventory().getItemInMainHand().getType() == Material.AIR && !e.getPlayer().isOp()) {
             Spawner spawner = this.main.getData().getSpawner(e.getClickedBlock());
             SpawnerInspectEvent inspectEvent = new SpawnerInspectEvent(spawner, e.getPlayer());
             Bukkit.getServer().getPluginManager().callEvent(inspectEvent);

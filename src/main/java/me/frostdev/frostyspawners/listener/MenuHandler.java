@@ -1,12 +1,12 @@
 package me.frostdev.frostyspawners.listener;
-import java.util.Map;
+
 import me.frostdev.frostyspawners.Frostyspawners;
 import me.frostdev.frostyspawners.Lang;
 import me.frostdev.frostyspawners.Permissions;
 import me.frostdev.frostyspawners.api.event.SpawnerBreakEvent;
+import me.frostdev.frostyspawners.api.event.SpawnerChangeLevelEvent.Cause;
 import me.frostdev.frostyspawners.api.event.SpawnerLevelupEvent;
 import me.frostdev.frostyspawners.api.event.SpawnerTypeMenuEvent;
-import me.frostdev.frostyspawners.api.event.SpawnerChangeLevelEvent.Cause;
 import me.frostdev.frostyspawners.exception.SetTypeFailException;
 import me.frostdev.frostyspawners.runnable.LevelMaxScheduler;
 import me.frostdev.frostyspawners.spawners.Spawner;
@@ -21,27 +21,22 @@ import me.frostdev.frostyspawners.util.config.ConfigLevel;
 import me.frostdev.frostyspawners.util.config.ConfigType;
 import me.frostdev.frostyspawners.util.items.SpawnEggLegacy;
 import me.frostdev.frostyspawners.util.items.SpawnEggNew;
-import me.frostdev.frostyspawners.util.items.TypeMenuEggItem;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.economy.EconomyResponse;
-import org.bukkit.Bukkit;
-import org.bukkit.DyeColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Particle;
+import org.bukkit.*;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.ClickType;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.*;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+
+import java.util.Map;
 
 public class MenuHandler implements Listener {
     private Frostyspawners main;
@@ -139,6 +134,12 @@ public class MenuHandler implements Listener {
     )
     public void onMenuClick(InventoryClickEvent e) {
         if (!(e.getClickedInventory() instanceof PlayerInventory) && e.getClickedInventory() != null && e.getClickedInventory().getHolder() != null && (e.getClickedInventory().getHolder() instanceof MainMenuHolder || e.getClickedInventory().getHolder() instanceof SettingsMenuHolder || e.getClickedInventory().getHolder() instanceof TypeMenuHolder) && e.getCurrentItem() != null && e.getCurrentItem().getType() != Material.AIR && e.getWhoClicked().getUniqueId() == this.player.getUniqueId()) {
+        //    int debugrange = this.spawner.getCreatureSpawner().getSpawnRange();
+        //    int debugspawncount = this.spawner.getCreatureSpawner().getSpawnCount();
+        //    int debugdelay = this.spawner.getDelay();
+        //    player.sendMessage(String.valueOf(debugrange));
+        //    player.sendMessage(String.valueOf(debugspawncount));
+        //    player.sendMessage(String.valueOf(debugdelay));
             if (e.getClick() != ClickType.LEFT && e.getClick() != ClickType.RIGHT) {
                 e.setCancelled(true);
             } else {
@@ -150,12 +151,6 @@ public class MenuHandler implements Listener {
                     if (option.getType() == this.main.items.exp_bottle(1).getType()) {
                         if (!Config.upgradeSpawners.get()) {
                             p.sendMessage(this.prefix + Lang.GUI_UPGRADE_DISABLED.toString());
-                            this.exit();
-                            return;
-                        }
-
-                        if (!p.hasPermission((new Permissions()).menu_upgrade)) {
-                            p.sendMessage(this.prefix + Lang.GUI_UPGRADE_NO_PERMISSION.toString().replace("%level%", String.valueOf(this.spawner.getLevel() + 1)));
                             this.exit();
                             return;
                         }
@@ -261,6 +256,9 @@ public class MenuHandler implements Listener {
                         this.openMenu("SETTINGS");
                         return;
                     }
+                    if(e.getAction().equals(InventoryAction.PLACE_SOME)){
+                        e.setCancelled(true);
+                    }
                     if (option.getType() == this.main.items.bedrock(1).getType()) {
                         SpawnerBreakEvent breakEvent = new SpawnerBreakEvent(this.spawner, this.player);
                         ItemStack toin = this.spawner.toItemStack();
@@ -273,11 +271,7 @@ public class MenuHandler implements Listener {
                     }
 
                     if (option.getType() == this.main.items.wool(1, DyeColor.LIME).getType() || option.getType() == this.main.items.wool(1, DyeColor.RED).getType()) {
-                        if (!p.hasPermission((new Permissions()).menu_showdelay)) {
-                            p.sendMessage(this.prefix + Lang.GUI_TOGGLE_NOPERM.toString());
-                            this.exit();
-                            return;
-                        } else if (!this.main.hasHolographicDisplays()) {
+                        if (!this.main.hasHolographicDisplays()) {
                             p.sendMessage(this.prefix + Lang.GUI_SHOWDELAY_NOHOLO.toString());
                             if (this.spawner.getShowDelay()) {
                                 this.spawner.setShowDelay(false);
@@ -305,13 +299,6 @@ public class MenuHandler implements Listener {
                             this.exit();
                             return;
                         }
-
-                        if (!p.hasPermission((new Permissions()).menu_type)) {
-                            p.sendMessage(this.prefix + Lang.GUI_TYPEMENU_NOPERM.toString());
-                            this.exit();
-                            return;
-                        }
-
                         SoundHandler.OPTION_SELECT.playSound(this.spawner.getLocation(), 0.3F, 0.0F);
                         this.openMenu("TYPE");
                         return;
@@ -326,11 +313,6 @@ public class MenuHandler implements Listener {
 
                 if (menu.getHolder() instanceof SettingsMenuHolder) {
                     if (e.getSlot() == 20) {
-                        if (!p.hasPermission((new Permissions()).menu_spawner_enabled)) {
-                            p.sendMessage(this.prefix + Lang.GUI_TOGGLE_NOPERM.toString());
-                            this.exit();
-                            return;
-                        }
 
                         if (this.spawner.isEnabled()) {
                             this.spawner.setEnabled(false);
@@ -384,12 +366,6 @@ public class MenuHandler implements Listener {
                         }
 
 
-                        if (!p.hasPermission((new Permissions()).menu_type_all) && !p.hasPermission(Util.toPermission(type))) {
-                            p.sendMessage(this.prefix + Lang.SPAWNER_CHANGE_TYPE_NOPERM.toString().replace("%type%", Util.toString(type)));
-                            this.exit();
-                            return;
-                        }
-
                         if(this.spawner.getSpawnedType().equals(type)){
                             p.sendMessage("That seems pretty redundant...");
                             this.exit();
@@ -432,6 +408,21 @@ public class MenuHandler implements Listener {
                         } catch (SetTypeFailException var11) {
                             p.sendMessage(this.prefix + Lang.SPAWNER_CHANGE_TYPE_FAIL.toString());
                             Logger.debug("Failed to change spawned type of spawner '" + this.spawner.getID() + "'. Reason: unknown.", var11);
+                        }
+                        if(!spawner.getSpawnedType().equals(type)){
+                            try {
+                                this.spawner.setSpawnedType(type);
+                                String debug;
+                                debug = type.toString().toLowerCase();
+                                //  p.sendMessage("FROSTY DEBUGGER: TYPE: " + debug + " COST: " + name.getTypeCost(type).toString() + " LEVEL REQUIREMENT: " + levelreq);
+                                //  p.sendMessage("CURRENT SPAWNER: TYPE: " + this.spawner.getSpawnedType().toString() + " LEVEL: " + this.spawner.getLevel() + " ENABLED: " + this.spawner.isEnabled() + " LOCKED: " + this.spawner.isLocked());
+                            } catch (IllegalArgumentException var10) {
+                                p.sendMessage(this.prefix + Lang.SPAWNER_CHANGE_TYPE_FAIL.toString());
+                                Logger.debug("Failed to change spawned type of spawner '" + this.spawner.getID() + "'. Reason: unknown or unregistered entity type.", var10);
+                            } catch (SetTypeFailException var11) {
+                                p.sendMessage(this.prefix + Lang.SPAWNER_CHANGE_TYPE_FAIL.toString());
+                                Logger.debug("Failed to change spawned type of spawner '" + this.spawner.getID() + "'. Reason: unknown.", var11);
+                            }
                         }
 
                         SoundHandler.OPTION_CHANGETYPE.playSound(this.spawner.getLocation(), 0.3F, 5.0F);

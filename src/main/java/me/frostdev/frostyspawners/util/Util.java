@@ -1,30 +1,18 @@
 package me.frostdev.frostyspawners.util;
 
-import java.text.Collator;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.TreeSet;
-
-import me.frostdev.frostyspawners.Frostyspawners;
 import me.frostdev.frostyspawners.spawners.Spawner;
-import me.frostdev.frostyspawners.util.config.Config;
-import me.frostdev.frostyspawners.util.config.ConfigBoolean;
 import me.frostdev.frostyspawners.util.config.ConfigType;
 import me.frostdev.frostyspawners.util.items.TypeMenuEggItem;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.attribute.Attribute;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.IronGolem;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.permissions.Permission;
+
+import java.text.Collator;
+import java.util.*;
 
 public class Util {
     private static Map<String, EntityType> mobTypes;
@@ -55,7 +43,7 @@ public class Util {
 
         for(int var3 = 0; var3 < var4; ++var3) {
             EntityType type = var5[var3];
-            if (type.isAlive() && type != EntityType.WITHER && type != EntityType.ENDER_DRAGON && type != EntityType.ARMOR_STAND) {
+            if (isenabled(type) && type.isAlive() && type != EntityType.WITHER && type != EntityType.ENDER_DRAGON && type != EntityType.ARMOR_STAND) {
                 types.add(type.name());
             }
         }
@@ -219,4 +207,8 @@ public class Util {
 
     public static void inspectSpawner(Player player, Spawner spawner) {
     }
+    public static boolean IsGUI(UUID u){
+
+    }
+    public static UUID UUIDlist
 }

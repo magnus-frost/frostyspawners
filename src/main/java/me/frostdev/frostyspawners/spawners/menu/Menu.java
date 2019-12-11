@@ -1,12 +1,5 @@
 package me.frostdev.frostyspawners.spawners.menu;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import me.frostdev.frostyspawners.Frostyspawners;
 import me.frostdev.frostyspawners.spawners.Spawner;
 import me.frostdev.frostyspawners.util.Logger;
@@ -27,6 +20,9 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.*;
+import java.util.Map.Entry;
 
 public class Menu {
     private Frostyspawners main;
@@ -128,6 +124,10 @@ public class Menu {
         this.menu_type = new HashMap();
     }
 
+    private void filler_menu_item() {
+
+    }
+
     private void next_page_item(Inventory menu) {
         ItemStack item = this.main.items.blaze_rod(1);
         ItemMeta meta = item.getItemMeta();
@@ -222,6 +222,8 @@ public class Menu {
             item.setItemMeta(meta);
             menu.setItem(20, item);
         }
+
+
     }
    // private  void type_menu_item_advanced(Inventory menu, Spawner spawner){
    //     ItemStack item = t

@@ -50,6 +50,8 @@ public class Config {
     public static ConfigString spawnerpickupitemlore;
     public static ConfigInteger limit;
     public static ConfigString lvlreq;
+    public static ConfigInteger maxnearbyentities;
+    public static ConfigInteger maxradius;
 
     public Config() {
         debug = new ConfigBoolean("debug", false);
@@ -100,6 +102,9 @@ public class Config {
         spawnerpickupitemlore = new ConfigString("pickup-description", "&7click to pick up your spawner.");
         lvlreq = new ConfigString("egg-item.lore2", "Level Required: &6%lvlreq%");
         limit = new ConfigInteger("limit", 5);
+        maxnearbyentities = new ConfigInteger("max-nearby-entities", 10);
+        maxradius = new ConfigInteger("spawner-radius", 10);
+
     }
 
     public static final ConfigLevel getLevel(int level) {

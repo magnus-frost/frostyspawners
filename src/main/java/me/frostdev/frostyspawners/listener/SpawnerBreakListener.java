@@ -34,16 +34,22 @@ public class SpawnerBreakListener implements Listener {
             ignoreCancelled = true
     )
     public void onSpawnerBreak(BlockBreakEvent e) {
+        Player p = e.getPlayer();
+        Block b = e.getBlock();
+        Spawner spawner = this.main.getData().getSpawner(b);
+        if(!spawner.getOwner().getUniqueId().equals(p.getUniqueId()) && !p.isOp()){
+            p.sendMessage("You do not have permission to access this spawner.");
+            e.setCancelled(true);
+        }
         if (Config.silkTouchMine.get()) {
-            Player p = e.getPlayer();
-            Block b = e.getBlock();
+
             if (b.getType() == this.main.items.spawner(1).getType()) {
                 ItemStack hand = p.getInventory().getItemInMainHand();
                 if (!this.isPickaxe(hand)) {
                     return;
                 }
 
-                Spawner spawner = this.main.getData().getSpawner(b);
+
                 if (!hand.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) {
                     if (p.isSneaking()) {
                         p.sendMessage(Lang.PREFIX.toString() + Lang.SPAWNER_BREAK_DESTROY.toString().replace("%type%", spawner.getSpawnedEntity()).replace("%level%", String.valueOf(spawner.getLevel())));
