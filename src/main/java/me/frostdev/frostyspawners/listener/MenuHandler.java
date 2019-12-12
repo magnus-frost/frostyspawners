@@ -136,12 +136,12 @@ public class MenuHandler implements Listener {
     )
     public void onMenuClick(InventoryClickEvent e) {
         if (!(e.getClickedInventory() instanceof PlayerInventory) && e.getClickedInventory() != null && e.getClickedInventory().getHolder() != null && (e.getClickedInventory().getHolder() instanceof MainMenuHolder || e.getClickedInventory().getHolder() instanceof SettingsMenuHolder || e.getClickedInventory().getHolder() instanceof TypeMenuHolder) && e.getCurrentItem() != null && e.getCurrentItem().getType() != Material.AIR && e.getWhoClicked().getUniqueId() == this.player.getUniqueId()) {
-            int debugrange = this.spawner.getCreatureSpawner().getSpawnRange();
-            int debugspawncount = this.spawner.getCreatureSpawner().getSpawnCount();
-            int debugdelay = this.spawner.getDelay();
-            player.sendMessage(String.valueOf(debugrange));
-            player.sendMessage(String.valueOf(debugspawncount));
-            player.sendMessage(String.valueOf(debugdelay));
+            //int debugrange = this.spawner.getCreatureSpawner().getSpawnRange();
+            //int debugspawncount = this.spawner.getCreatureSpawner().getSpawnCount();
+            //int debugdelay = this.spawner.getDelay();
+            //player.sendMessage(String.valueOf(debugrange));
+            //player.sendMessage(String.valueOf(debugspawncount));
+            //player.sendMessage(String.valueOf(debugdelay));
 
             if (e.getClick() != ClickType.LEFT && e.getClick() != ClickType.RIGHT) {
                 e.setCancelled(true);

@@ -8,6 +8,7 @@ import me.frostdev.frostyspawners.util.config.Config;
 import me.frostdev.frostyspawners.util.config.ConfigType;
 import me.frostdev.frostyspawners.util.items.TypeMenuEggItem;
 import net.md_5.bungee.api.ChatColor;
+import net.minecraft.server.v1_14_R1.NBTTagCompound;
 import org.bukkit.Bukkit;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
@@ -148,7 +149,7 @@ public class Menu {
         this.border_item(this.menu_settings, 32, DyeColor.LIGHT_GRAY);
         this.border_item(this.menu_settings, 33, DyeColor.LIGHT_GRAY);
         this.border_item(this.menu_settings, 34, DyeColor.LIGHT_GRAY);
-        this.border_item(this.menu_settings, 35, DyeColor.LIGHT_GRAY);
+        this.border_item(this.menu_settings, 35, DyeColor.YELLOW);
         this.border_item(this.menu_settings, 36, DyeColor.YELLOW);
         this.border_item(this.menu_settings, 37, DyeColor.YELLOW);
         this.border_item(this.menu_settings, 38, DyeColor.YELLOW);
@@ -468,9 +469,7 @@ public class Menu {
             ItemMeta mgolem = golem.getItemMeta();
             Material igolem = golem.getType();
             golem.setType(igolem);
-            mgolem.removeAttributeModifier(EquipmentSlot.HEAD);
-            mgolem.removeAttributeModifier(Attribute.GENERIC_ARMOR);
-            mgolem.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, true);
+            mgolem.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
             List<String> lore = new ArrayList();
             mgolem.setDisplayName(ChatColor.translateAlternateColorCodes('&', Config.menuTypeEggItemName.get().replaceAll("%type%", egg.getDisplayName())));
             lore.add(ChatColor.translateAlternateColorCodes('&', Config.menuTypeEggItemLore.get()));
@@ -478,9 +477,7 @@ public class Menu {
             lore.add(ChatColor.translateAlternateColorCodes('&', Config.lvlreq.get().replaceAll("%lvlreq%", Integer.toString(lvlreq))));
             mgolem.setLore(lore);
             golem.setItemMeta(mgolem);
-            golem.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-            golem.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-            golem.addItemFlags(ItemFlag.HIDE_PLACED_ON);
+            ;
             menu.setItem(location, golem);
         }else {
             EntityType etype = egg.getEntityType();

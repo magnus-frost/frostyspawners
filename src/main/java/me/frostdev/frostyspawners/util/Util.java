@@ -108,7 +108,7 @@ public class Util {
 
     public static String toUserFriendlyString(EntityType type) {
         if(type.equals(EntityType.IRON_GOLEM)){
-            return (String)"IRON_GOLEM";
+            return (String)"Iron Golem";
         }
         return (String)userFriendlyMobTypes.get(type);
     }

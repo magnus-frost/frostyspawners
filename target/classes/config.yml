@@ -1,0 +1,357 @@
+#############################################################
+# +-------------------------------------------------------+ #
+# |                   Frosty Spawners                     | #
+# +--------------------Version 0.1.1----------------------+ #
+#############################################################
+
+# Here you can configure all the settings of the plugin.
+# Would you ever encounter that this configuration file is giving errors, please check the following things:
+#   - No tabs are present: YAML only allows spaces (when only using Notepad++, this issue will never occur)
+#   - Indents are correct: YAML hierarchy is based entirely on indentation
+#   - You have "escaped" all apostrophes in your text: If you want to write "don't", for example, write "don''t" instead (note the doubled apostrophe)
+#   - Text with symbols is enclosed in single or double quotation marks
+
+# For any questions, troubleshooting or issue reporting, go to the plugin's BukkitDev page, at http://bit.ly/AdvancedSpawners
+
+############################################################
+# +------------------------------------------------------+ #
+# |                 Global Configuration                 | #
+# +------------------------------------------------------+ #
+############################################################
+
+# Enable debug logging.
+debug: false
+
+# Allow upgrading spawners.
+upgrade-spawners: true
+
+# Allow mining spawners with any Silk Touch-enchanted pickaxe, while retaining spawner mob type and level.
+silk-touch-mine: true
+
+# Warn players when they try to mine a spawner without the Silk Touch enchantment. (requires 'silk-touch-mine' to be set to true).
+silk-touch-protect: true
+
+# Allow the usage of the type menu in the Spawner Menu.
+type-menu: true
+
+# Enable the effect that plays when a spawner is upgraded to the maximum level.
+max-level-effect: true
+
+# Enable the sound effects when using the Spawner Menu.
+menu-sounds: true
+
+# Allow changing spawner types with right-clicking spawners while holding Spawn Eggs.
+right-click-eggs: false
+
+# The amount of eggs required for changing the type of a spawner by right-clicking it with a Spawn Egg.
+eggs-amount: 5
+
+############################################################
+# +------------------------------------------------------+ #
+# |              Spawner Menu Configuration              | #
+# +------------------------------------------------------+ #
+############################################################
+
+# -- Main menu -- #
+
+# The text displayed at the top of the menu.
+main-menu-header: '&9&lFrosty &f&lSpawner Menu'
+
+# The display name of the items bordering the menu.
+border-item-name: '&9&lFrosty &f&lSpawners'
+
+# Configure the item for closing the menu
+close-item:
+    name: '&c&lClose'
+    lore: '&6Close the menu.'
+
+# Configure the item for returning to the main menu
+return-item:
+    name: '&c&lReturn'
+    lore: '&6Return to main menu.'
+
+# Configure the spawner info item.
+info-item:
+    name: '&a&lSpawner Info'
+    lore1: '&6Level: &b%level%&6.'
+    lore2: '&6Delay: &b%delay% &6seconds.'
+    lore3: '&6Enabled: &r%value%&6.'
+    lore4: '&6Locked: &r%value%&6.'
+    lore5: '&7Click to open spawner settings menu.'
+
+# Configure the item for upgrading a spawner.
+upgrade-item:
+    material: EXP_BOTTLE
+    name:
+        upgrade: '&a&lUpgrade Spawner to lvl. &6&l%level%'
+        max: '&a&lAt maximum level!'
+    lore1: '&6Cost: &b%cost%&6.'
+    lore2: '&6New delay: &b%delay% seconds&6.'
+    lore3: '&7Click to upgrade.'
+
+# Configure the item for going to the types menu.
+type-menu-item:
+    name: '&6&lType Menu'
+    lore1: '&6Current type: &b%type%&6.'
+    lore2: '&7Click to open types menu.'
+    
+# Configure the item for toggling the show delay option.
+delay-item:
+    name: '&6&lShow delay: &r%value%&6&l.'
+    lore1: '&7Click to toggle option.'
+
+# -- Settings menu -- #
+
+# Configure the item for toggling spawner spawning.
+enabled-item:
+    name: '&6&lEnabled: &r%value%&6&l.'
+    lore: '&7Click to toggle option.'
+
+# Configure the item for toggling the lock option.
+lock-item:
+    name: '&6&lLocked: &r%value%&6&l.'
+    lore1: '&7Click to toggle option.'
+    
+# -- Type menu -- #
+type-menu-header: '&&9&lSelect &f&la type'
+
+# Configure the item for changing the spawner's type to a certain entity type.
+egg-item:
+    name: '&6&l%type%'
+    lore: '&7Click to change spawner type.'
+# Configure Entity Type.
+types:
+    bat:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    blaze:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    cat:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    cave_spider:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    chicken:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    cod:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    cow:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    dolphin:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    donkey:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    drowned:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    elder_guardian:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    enderman:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    endermite:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    evoker:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    fox:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    ghast:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    guardian:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    horse:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    husk:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    llama:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    magma_cube:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    mushroom_cow:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    mule:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    ocelot:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    panda:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    parrot:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    phantom:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    pig:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    pillager:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    polar_bear:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    pufferfish:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    rabbit:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    ravager:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    salmon:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    sheep:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    shulker:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    silverfish:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    skeleton_horse:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    slime:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    spider:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    squid:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    stray:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    Trader_llama:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    zombie:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    skeleton:
+        levelreq: 0
+        cost: 0
+        enabled: true
+    creeper:
+        levelreq: 0
+        cost: 0
+        enabled: true
+############################################################
+# +------------------------------------------------------+ #
+# |                 Levels Configuration                 | #
+# +------------------------------------------------------+ #
+############################################################
+
+# The maximum level
+max-level: 5
+
+# Set whether the upgrades should cost EXP levels or money. (requires Vault for money)
+money-upgrades: true
+
+# Configure each level individually
+levels:
+    '0':
+        cost: 500
+        delay: 500
+        spawnCount: 4
+        effectType: none
+        effect: none
+    '1':
+        cost: 700
+        delay: 450
+        spawnCount: 5
+        effectType: particle
+        effect: PORTAL
+    '2':
+        cost: 1000
+        delay: 400
+        spawnCount: 6
+        effectType: particle
+        effect: PORTAL
+    '3':
+        cost: 1400
+        delay: 300
+        spawnCount: 7
+        effectType: particle
+        effect: PORTAL
+    '4':
+        cost: 2000
+        delay: 200
+        spawnCount: 8
+        effectType: particle
+        effect: PORTAL
+    '5':
+        cost: 3250
+        delay: 100
+        spawnCount: 10
+        effectType: particle
+        effect: PORTAL

@@ -57,6 +57,12 @@ public class SpawnerInteractListener implements Listener {
                 Spawner spawner;
                 SpawnerOpenMenuEvent event;
                 MenuHandler handler;
+                spawner = this.main.getData().getSpawner(b);
+                if(!spawner.getOwner().getUniqueId().equals(p.getUniqueId()) && !p.isOp()){
+                    p.sendMessage("You do not have permission to access this spawner.");
+                    e.setCancelled(true);
+                    return;
+                }
                 if (Util.isSpawnEgg(p.getInventory().getItemInMainHand())) {
                     if (Config.eggsEnable.get()) {
                         spawner = this.main.getData().getSpawner(b);
@@ -77,6 +83,7 @@ public class SpawnerInteractListener implements Listener {
                             eggItem = egg.toItemStack();
                             eggType = egg.getSpawnedType();
                         }
+
 
                         if ((!p.hasPermission((new Permissions()).spawner_egg_changetype) || !p.hasPermission("frostyspawners.spawner.egg." + Util.toString(eggType).toLowerCase().replace(" ", ""))) && !p.hasPermission((new Permissions()).spawner_egg_changetype_all)) {
                             p.sendMessage(Lang.PREFIX.toString() + Lang.SPAWNER_CHANGE_EGG_NO_PERMISSION.toString().replace("%type%", Util.toString(eggType)));
@@ -111,7 +118,7 @@ public class SpawnerInteractListener implements Listener {
                         return;
                     }
                 } else {
-                    if (!p.hasPermission((new Permissions()).menu) || p.getInventory().getItemInMainHand().getType() != Material.AIR || !Config.upgradeSpawners.get()) {
+                    if (p.getInventory().getItemInMainHand().getType() != Material.AIR || !Config.upgradeSpawners.get()) {
                         return;
                     }
 

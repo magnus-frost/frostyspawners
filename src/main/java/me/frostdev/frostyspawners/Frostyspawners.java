@@ -27,6 +27,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.Permission;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -43,6 +44,8 @@ public class Frostyspawners extends JavaPlugin {
     public static File LANG_FILE;
     private boolean holograms;
     private Economy ECON = null;
+    private String perms = null;
+
 
     public Frostyspawners() {
     }
@@ -107,10 +110,11 @@ public class Frostyspawners extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new SpawnerPlaceListener(this), this);
         this.getServer().getPluginManager().registerEvents(new SpawnerInteractListener(this), this);
         this.getServer().getScheduler().scheduleSyncRepeatingTask(this, new SpawnerPlayEffect(this), 0L, 20L);
-        this.getServer().getPluginManager().registerEvents(new SpanerDeathListener(this), this);
+        this.getServer().getPluginManager().registerEvents(new SpawnerDeathListener(this), this);
         ConfigurationSerialization.registerClass(Spawner.class);
         Logger.info("Setup complete. Enabled " + this.name + "version " + this.versionID + ".");
     }
+
 
     public void onDisable() {
         this.data.saveSpawners();

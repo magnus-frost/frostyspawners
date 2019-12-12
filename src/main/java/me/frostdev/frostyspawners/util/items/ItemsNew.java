@@ -3,7 +3,9 @@ package me.frostdev.frostyspawners.util.items;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public class ItemsNew implements Items {
     public ItemsNew() {
@@ -44,7 +46,11 @@ public class ItemsNew implements Items {
         return new ItemStack(Material.matchMaterial("BEDROCK"), i);
     }
     public ItemStack helmet(int i) {
-        return new ItemStack(Material.IRON_HELMET);
+        ItemStack heml = new ItemStack(Material.IRON_HELMET);
+        ItemMeta helmeta = heml.getItemMeta();
+        helmeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        heml.setItemMeta(helmeta);
+        return heml;
     }
 
     public ItemStack wool(int i, DyeColor c) {
