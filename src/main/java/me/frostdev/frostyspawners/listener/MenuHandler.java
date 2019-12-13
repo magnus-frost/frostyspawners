@@ -150,6 +150,8 @@ public class MenuHandler implements Listener {
                 Player p = (Player)e.getWhoClicked();
                 Inventory menu = e.getClickedInventory();
                 ItemStack option = e.getCurrentItem();
+
+                //if(p.getUniqueId().equals(this.spawner.getOwner().getUniqueId())){
                 if (menu.getHolder() instanceof MainMenuHolder) {
                     if (option.getType() == this.main.items.exp_bottle(1).getType()) {
                         if (!Config.upgradeSpawners.get()) {

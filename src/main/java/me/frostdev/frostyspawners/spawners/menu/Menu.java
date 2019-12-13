@@ -430,7 +430,7 @@ public class Menu {
 
                 EntityType type = (EntityType)var5.next();
                 eggItem = Util.getEgg(type);
-            } while(!player.hasPermission(eggItem.getPermission()));
+            } while(false);
 
             menu = (Inventory)this.menu_type.get(currentPage);
             if (menu == null) {

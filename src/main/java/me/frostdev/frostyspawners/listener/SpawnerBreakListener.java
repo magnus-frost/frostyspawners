@@ -48,6 +48,7 @@ public class SpawnerBreakListener implements Listener {
                 if(!spawner.getOwner().getUniqueId().equals(p.getUniqueId()) && !p.isOp()){
                     p.sendMessage("You do not have permission to access this spawner.");
                     e.setCancelled(true);
+                    return;
                 }
                 if (!hand.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) {
                     if (p.isSneaking()) {
