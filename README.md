@@ -16,3 +16,15 @@ Entity type selection menu is fully configurable and allows just about any mob i
 -{How}-
 Admin team please fill this out. 
 Tell me if you want an npc to give out spawners or you just want to put the spawner item itself in the vote loot table. 
+
+
+KNOWN BUGS:
+-Spawner Menu will show incorrect spawned type when another player accesses a different spawner elsewhere. This will not affect the functionality of the menu or the spawner.
+
+-Lock function currently locks out everyone but the spawners owner. This is not intended use.
+
+-Chicken Stacks below the size of 50 will sometimes result in negative egg spawns.
+
+TODO:
+-Add players to a spawner
+-Determine special mobs ItemDrop Events.
